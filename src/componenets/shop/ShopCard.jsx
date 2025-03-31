@@ -1,7 +1,7 @@
 const ShopCard = ({ name, price, image}) => {
     return (
         <div>
-            <img src={image} />
+            <img src={`/images/${image}`} />
             <p>{name}</p>
             <p>{price}</p>
         </div>

@@ -9,10 +9,11 @@ const Shop =  () => {
 
     useEffect(() => {
         (async () => {
-            let url = "http://127.0.0.1:8000/product/"
+            let url = `http://127.0.0.1:8000/api/product/${clothesType}`
+            console.log(url)
             const data = await fetch(url, {
                 method: "GET",
-                mode: "cors"
+                mode: "cors",
             })
 
             const res = await data.json()
