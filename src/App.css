@@ -1,0 +1,10 @@
+.container1 {
+  height: 110vh;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  filter: brightness(50%);
+}

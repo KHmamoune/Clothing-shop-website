@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  width: 100%;
+}
+
+.header-right, .header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  align-items:flex-start;
+  margin-top: 1.5rem;
+}
+
+.header-left > a {
+  margin-inline: 1rem;
+  margin-top: 2rem;
+  margin-bottom: auto;
+}
+
+.header-left > img {
+  margin-bottom: -25px;
+}
+
+.header-right > div {
+  display: flex;
+  margin-inline: 1rem;
+}
+
+.header-right > div > a {
+  margin-block: auto;
+}

@@ -1,0 +1,41 @@
+.images-grid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 50rem;
+  margin: auto;
+}
+
+.images-grid > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.images-grid > div > p {
+  position: absolute;
+  color: white;
+  z-index: 2;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.images-grid > div > img {
+  filter: brightness(50%);
+}
+
+.integrale-text-container {
+  text-align: center;
+}
+
+.integrale-text-container > p:first-child {
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.integrale-text-container > p:nth-child(2) {
+  font-size: 20px;
+  color: grey;
+}

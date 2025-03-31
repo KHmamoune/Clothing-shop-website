@@ -1,0 +1,11 @@
+.nouveautes-card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEBEB;
+  border-radius: 50px;
+  margin: 1rem;
+}
+
+.nouveautes-card-container > div {
+  text-align: center;
+}

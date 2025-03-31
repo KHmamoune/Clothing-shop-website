@@ -1,0 +1,32 @@
+.images-container {
+  display: flex;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  transition: scroll 0.3s ease-in-out;
+}
+
+.nouveautes-text-container {
+  text-align: center;
+}
+
+.nouveautes-text-container > p:nth-child(1) {
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.nouveautes-text-container > p:nth-child(2) {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.nouveautes-container {
+  display: flex;
+  margin-block: 2rem 8rem;
+}
+
+.nouveautes-container > button {
+  background-color: transparent;
+  border: 0;
+}
