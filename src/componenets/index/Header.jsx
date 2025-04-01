@@ -9,8 +9,8 @@ const Header = () => {
         <div className="header-container">
             <div className="header-left">
                 <img src={logoIcon} />
-                <a href="">Acceuil</a>
-                <a href="">Boutique</a>
+                <a href="/">Acceuil</a>
+                <a href="/shop">Boutique</a>
                 <a href="">Nouveautes</a>
                 <a href="">Contact</a>
             </div>
@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
                 <div>
                     <img src={bookIcon} />
-                    <a href="">Login</a>
+                    <a href="/login">Login</a>
                 </div>
             </div>
         </div>
