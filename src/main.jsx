@@ -8,6 +8,9 @@ import Shop from './componenets/shop/Shop.jsx'
 import LogIn from './componenets/login/LogIn.jsx'
 import SignUp from './componenets/login/SignUp.jsx'
 import Error from './componenets/Error.jsx'
+import CreateProduct from './componenets/admin/CreateProduct.jsx'
+import CreateUser from './componenets/admin/CreateUser.jsx'
+import DashBoard from './componenets/admin/Dashboard.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +21,9 @@ const router = createBrowserRouter([
       {path: "shop", element: <Shop />},
       {path: "login", element: <LogIn />},
       {path: "signup", element: <SignUp />},
+      {path: "admin", element: <DashBoard />},
+      {path: "admin/create-product", element: <CreateProduct />},
+      {path: "admin/create-user", element: <CreateUser />},
     ],
     errorElement: <Error />
   },

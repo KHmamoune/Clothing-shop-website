@@ -1,18 +1,20 @@
+import { Link } from 'react-router-dom'
+
 const LogIn = () => {
     return (
         <div>
             <p>LogIn</p>
             <form>
                 <div>
-                    <label for="email">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input id="email" type="text" />
                 </div>
                 <div>
-                    <label for="pass">Password</label>
+                    <label htmlFor="pass">Password</label>
                     <input id="pass" type="password" />
                 </div>
             </form>
-            <a href="/signup">create an account</a>
+            <Link to="/signup">create an account</Link>
         </div>
     )
 }

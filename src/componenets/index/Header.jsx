@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import logoIcon from "../../assets/logoIcon.svg"
 import searchIcon from "../../assets/searchIcon.svg"
 import bagIcon from "../../assets/bagIcon.svg"
@@ -9,23 +10,23 @@ const Header = () => {
         <div className="header-container">
             <div className="header-left">
                 <img src={logoIcon} />
-                <a href="/">Acceuil</a>
-                <a href="/shop">Boutique</a>
-                <a href="">Nouveautes</a>
-                <a href="">Contact</a>
+                <Link to="/">Acceuil</Link>
+                <Link to="/shop">Boutique</Link>
+                <Link to="">Nouveautes</Link>
+                <Link to="">Contact</Link>
             </div>
             <div className="header-right">
                 <div>
                     <img src={searchIcon} />
-                    <a href="">Rechercher</a>
+                    <Link to="">Rechercher</Link>
                 </div>
                 <div>
                     <img src={bagIcon} />
-                    <a href="">Panier</a>
+                    <Link to="">Panier</Link>
                 </div>
                 <div>
                     <img src={bookIcon} />
-                    <a href="/login">Login</a>
+                    <Link to="/login">Login</Link>
                 </div>
             </div>
         </div>

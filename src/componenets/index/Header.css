@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-a {
+.header-left > a, .header-right > div > a {
   text-decoration: none;
   color: white;
 }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -6,6 +7,22 @@ const CreateProduct = () => {
     const [price, setPrice] = useState(0.0)
     const [image, setImage] = useState("")
     const [type, setType] = useState("t-shirt")
+    const [clothesInfo, setClothesInfo] = useState([])
+
+    useEffect(() => {
+        (async () => {
+            let url = `http://127.0.0.1:8000/api/product/`
+            console.log(url)
+            const data = await fetch(url, {
+                method: "GET",
+                mode: "cors",
+            })
+
+            const res = await data.json()
+            console.log(res)
+            setClothesInfo(res)
+        })()
+    })
 
     const handleClick = async () => {
         let url = `http://127.0.0.1:8000/api/create-product`
