@@ -11,6 +11,8 @@ import Error from './componenets/Error.jsx'
 import CreateProduct from './componenets/admin/CreateProduct.jsx'
 import CreateUser from './componenets/admin/CreateUser.jsx'
 import DashBoard from './componenets/admin/Dashboard.jsx'
+import ProductDetails from './componenets/admin/ProductDetails.jsx'
+import UserDetails from './componenets/admin/UserDetails.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
       {path: "admin", element: <DashBoard />},
       {path: "admin/create-product", element: <CreateProduct />},
       {path: "admin/create-user", element: <CreateUser />},
+      {path: "admin/product-details", element: <ProductDetails />},
+      {path: "admin/user-details", element: <UserDetails />},
     ],
     errorElement: <Error />
   },
