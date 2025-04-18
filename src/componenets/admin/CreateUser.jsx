@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './Form.css'
 
 const CreateUser = () => {
     const [username, setUsername] = useState("")
@@ -48,39 +49,42 @@ const CreateUser = () => {
 
     return (
         <div>
-            <div>
-                <label htmlFor="username">Username</label>
-                <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+            <p className='admin-form-title'>Create User</p>
+            <div className='form-container'>
+                <div>
+                    <label htmlFor="username">Username</label>
+                    <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="first">First name</label>
+                    <input id="first" type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="last">Last name</label>
+                    <input id="last" type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input id="email" type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="phone">Phone number</label>
+                    <input id="phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="pass">Password</label>
+                    <input id="pass" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="type">Type</label>
+                    <select name="type" id="type" value={type} onChange={(event) => setType(event.target.value)}>
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button onClick={handleClick}>submit</button>
+                <Link to="/admin">back to dashboard</Link>
             </div>
-            <div>
-                <label htmlFor="first">First name</label>
-                <input id="first" type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="last">Last name</label>
-                <input id="last" type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="phone">Phone number</label>
-                <input id="phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="pass">Password</label>
-                <input id="pass" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="type">Type</label>
-                <select name="type" id="type" value={type} onChange={(event) => setType(event.target.value)}>
-                  <option value="user">User</option>
-                  <option value="admin">Admin</option>
-                </select>
-            </div>
-            <button onClick={handleClick}>submit</button>
-            <Link to="/admin">back to dashboard</Link>
         </div>
     )
 }

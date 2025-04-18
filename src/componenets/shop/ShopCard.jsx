@@ -1,9 +1,13 @@
+import './ShopCard.css'
+
 const ShopCard = ({ name, price, image}) => {
     return (
-        <div>
+        <div className="shop-card">
             <img src={`/images/${image}`} />
-            <p>{name}</p>
-            <p>{price}</p>
+            <div>
+                <p>{name}</p>
+                <p>{price}</p>
+            </div>
         </div>
     )
 }

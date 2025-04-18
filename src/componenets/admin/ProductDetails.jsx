@@ -94,52 +94,61 @@ const ProductDetails = () => {
     if(displayForm) {
         return (
             <div>
-                <div>
-                    <label htmlFor="name">Name</label>
-                    <input id="name" type="text" value={name} onChange={(event) => {setName(event.target.value)}} />
+                <p className='admin-form-title'>Edit Product</p>
+                <div className='form-container'>
+                    <div>
+                        <label htmlFor="name">Name</label>
+                        <input id="name" type="text" value={name} onChange={(event) => {setName(event.target.value)}} />
+                    </div>
+                    <div>
+                        <label htmlFor="price">Price</label>
+                        <input id="price" type="number" value={price} onChange={(event) => {setPrice(parseFloat(event.target.value))}} />
+                    </div>
+                    <div>
+                        <label htmlFor="type">Type</label>
+                        <select name="type" id="type" value={type} onChange={(event) => {setType(event.target.value)}}>
+                          <option value="t-shirt">T-shirt</option>
+                          <option value="jooking">Jooking</option>
+                          <option value="jean">Jean</option>
+                          <option value="chaussures">Chaussures</option>
+                          <option value="sweat-shirt">Sweat-shirt</option>
+                          <option value="classique">Classique</option>
+                          <option value="jacket">Jacket</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="image">Image</label>
+                        <input id="image" type="text" value={image} onChange={(event) => {setImage(event.target.value)}} />
+                    </div>
+                    <button onClick={() => handleEdit(id)}>submit</button>
+                    <Link to="/admin">back to dashboard</Link>
                 </div>
-                <div>
-                    <label htmlFor="price">Price</label>
-                    <input id="price" type="number" value={price} onChange={(event) => {setPrice(parseFloat(event.target.value))}} />
-                </div>
-                <div>
-                    <label htmlFor="type">Type</label>
-                    <select name="type" id="type" value={type} onChange={(event) => {setType(event.target.value)}}>
-                      <option value="t-shirt">T-shirt</option>
-                      <option value="jooking">Jooking</option>
-                      <option value="jean">Jean</option>
-                      <option value="chaussures">Chaussures</option>
-                      <option value="sweat-shirt">Sweat-shirt</option>
-                      <option value="classique">Classique</option>
-                      <option value="jacket">Jacket</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="image">Image</label>
-                    <input id="image" type="text" value={image} onChange={(event) => {setImage(event.target.value)}} />
-                </div>
-                <button onClick={() => handleEdit(id)}>submit</button>
-                <Link to="/admin">back to dashboard</Link>
             </div>
         )
     }
 
     return (
         <div>
-            {
-                clothesInfo.map((item) => {
-                    return (
-                        <div key={uuidv4()}>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                            <p>{item.image}</p>
-                            <p>{item.product_type}</p>
-                            <button onClick={() => handleClick(item.id, item.name, item.price, item.product_type, item.image, item.date_of_addition)}>Edit</button>
-                            <button onClick={() => handleDelete(item.id)}>Delete</button>
-                        </div>
-                    )
-                })
-            }
+            <div className='item-list-container'>
+                {
+                    clothesInfo.map((item) => {
+                        return (
+                            <div key={uuidv4()}>
+                                <p>Name: {item.name}</p>
+                                <p>Price: {item.price}</p>
+                                <p>Type: {item.product_type}</p>
+                                <p>Image: {item.image}</p>
+                                <img src={`/images/${item.image}`} />
+                                <button onClick={() => handleClick(item.id, item.name, item.price, item.product_type, item.image, item.date_of_addition)}>Edit</button>
+                                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                                <Link to={`/admin/promotion-details/${item.id}`}>Manage promotion</Link>
+                                <Link to="sizes-list">Manage sizes</Link>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            <Link to="/admin">back to dashboard</Link>
         </div>
     )
 }

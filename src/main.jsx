@@ -13,6 +13,7 @@ import CreateUser from './componenets/admin/CreateUser.jsx'
 import DashBoard from './componenets/admin/Dashboard.jsx'
 import ProductDetails from './componenets/admin/ProductDetails.jsx'
 import UserDetails from './componenets/admin/UserDetails.jsx'
+import PromotionList from './componenets/admin/PromotionList.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       {path: "admin/create-user", element: <CreateUser />},
       {path: "admin/product-details", element: <ProductDetails />},
       {path: "admin/user-details", element: <UserDetails />},
+      {path: "admin/promotion-details/:id", element: <PromotionList />},
     ],
     errorElement: <Error />
   },

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
+import './Form.css'
 
 const UserDetails = () => {
     const [id, setId] = useState(0)
@@ -106,60 +107,66 @@ const UserDetails = () => {
     if (displayForm) {
         return (
             <div>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+                <p className='admin-form-title'>Edit User</p>
+                <div className='form-container'>
+                    <div>
+                        <label htmlFor="username">Username</label>
+                        <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="first">First name</label>
+                        <input id="first" type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="last">Last name</label>
+                        <input id="last" type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input id="email" type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="phone">Phone number</label>
+                        <input id="phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="pass">Password</label>
+                        <input id="pass" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="type">Type</label>
+                        <select name="type" id="type" value={type} onChange={(event) => setType(event.target.value)}>
+                          <option value="user">User</option>
+                          <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button onClick={handleEdit}>submit</button>
+                    <Link to="/admin">back to dashboard</Link>
                 </div>
-                <div>
-                    <label htmlFor="first">First name</label>
-                    <input id="first" type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="last">Last name</label>
-                    <input id="last" type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="phone">Phone number</label>
-                    <input id="phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="pass">Password</label>
-                    <input id="pass" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="type">Type</label>
-                    <select name="type" id="type" value={type} onChange={(event) => setType(event.target.value)}>
-                      <option value="user">User</option>
-                      <option value="admin">Admin</option>
-                    </select>
-                </div>
-                <button onClick={handleEdit}>submit</button>
-                <Link to="/admin">back to dashboard</Link>
             </div>
         )
     }
 
     return (
         <div>
-            {userInfo.map((item) => {
-                return (
-                    <div key={uuidv4()}>
-                        <p>{item.user_name}</p>
-                        <p>{item.first_name}</p>
-                        <p>{item.last_name}</p>
-                        <p>{item.email}</p>
-                        <p>{item.phone}</p>
-                        <p>{item.type}</p>
-                        <p>{item.password}</p>
-                        <button onClick={() => handleClick(item.id, item.user_name, item.first_name, item.last_name, item.email, item.phone_number, item.password, item.user_type)}>Edit</button>
-                        <button onClick={() => handleDelete(item.id)}>Delete</button>
-                    </div>
-                )
-            })}
+            <div className='item-list-container'>
+                {userInfo.map((item) => {
+                    return (
+                        <div key={uuidv4()}>
+                            <p>Username: {item.user_name}</p>
+                            <p>First Name: {item.first_name}</p>
+                            <p>Last Name: {item.last_name}</p>
+                            <p>Email: {item.email}</p>
+                            <p>Phone Number: {item.phone_number}</p>
+                            <p>Type: {item.user_type}</p>
+                            <p>Password: {item.password}</p>
+                            <button onClick={() => handleClick(item.id, item.user_name, item.first_name, item.last_name, item.email, item.phone_number, item.password, item.user_type)}>Edit</button>
+                            <button onClick={() => handleDelete(item.id)}>Delete</button>
+                        </div>
+                    )
+                })}
+            </div>
+            <Link to="/admin">back to dashboard</Link>
         </div>
     )
 }
