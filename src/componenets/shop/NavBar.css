@@ -1,0 +1,40 @@
+.filter-container {
+  display: flex;
+  justify-content: center;
+}
+
+.filter-container > button {
+  width: 10rem;
+  height: 3rem;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 20px;
+}
+
+.filter-container > button:nth-child(2) {
+  margin-inline: -1px;
+}
+
+.type-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  margin-top: -1px;
+  border-block: 1px solid black;
+}
+
+.type-container > button {
+  background-color: transparent;
+  border: 0;
+  font-size: 20px;
+}
+
+.selected-type {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.selected-filter{
+  font-weight: 900;
+}

@@ -4,8 +4,18 @@ import searchIcon from "../../assets/searchIcon.svg"
 import bagIcon from "../../assets/bagIcon.svg"
 import bookIcon from "../../assets/bookmarkIcon.svg"
 import "./Header.css"
+import { useContext } from 'react'
+import { MyContext } from '../../MyContext'
+import Cookies from 'js-cookie'
 
 const Header = () => {
+    const { isAuthenticated } = useContext(MyContext)
+
+    const handleLogout = () => {
+        Cookies.remove("authToken")
+        window.location.reload()
+    }
+
     return (
         <div className="header-container">
             <div className="header-left">
@@ -26,7 +36,7 @@ const Header = () => {
                 </div>
                 <div>
                     <img src={bookIcon} />
-                    <Link to="/login">Login</Link>
+                    {isAuthenticated ? <button className='logout-button' onClick={handleLogout}>Logout</button> : <Link to="/login">Login</Link>}
                 </div>
             </div>
         </div>

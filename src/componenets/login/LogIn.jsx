@@ -1,31 +1,22 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../admin/Form.css'
 import { useEffect } from 'react'
+import Cookies from 'js-cookie'
+import { useContext } from 'react'
+import { MyContext } from '../../MyContext'
 
 const LogIn = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const Navigate = useNavigate()
+    const { isAuthenticated } = useContext(MyContext)
 
-    const checkAuthStatus = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/verify-token', {
-                method: 'GET',
-                credentials: 'include',
-            });
-
-            console.log(response.ok)
-
-        } catch (error) {
-            console.error('Auth check failed:', error)
-            return false;
+    useEffect(() => {
+        if (isAuthenticated) {
+            Navigate("/")
         }
-    }
-
-    useEffect(() => {(async () => {
-            let result = await checkAuthStatus()
-        })()
-    }, [])
+    })
 
     const handleLogIn = async () => {
         let url = `http://127.0.0.1:8000/api/login`
@@ -33,7 +24,7 @@ const LogIn = () => {
         if (username === "" || password === "") {
             return
         } else {
-            const res = await fetch(url, {
+            const data = await fetch(url, {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
@@ -45,13 +36,19 @@ const LogIn = () => {
                 })
             })
 
-            if (res.ok) {
+
+            if (data.ok) {
+                const res = await data.json()
                 console.log("logged in successfully")
                 setUsername("")
                 setPassword("")
+                console.log(res)
+                Cookies.set('authToken', res.token, { expires: 7 })
+                window.location.reload()
             }
         }
     }
+
     return (
         <div>
             <p className='admin-form-title'>LogIn</p>

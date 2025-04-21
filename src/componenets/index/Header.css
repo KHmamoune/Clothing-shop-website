@@ -41,4 +41,14 @@ body {
 
 .header-right > div > a {
   margin-block: auto;
+  font-family: sans-serif;
+}
+
+.logout-button {
+  font-family: sans-serif;
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-size: 16px;
+  padding: 0;
 }

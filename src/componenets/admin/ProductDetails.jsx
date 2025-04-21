@@ -142,7 +142,7 @@ const ProductDetails = () => {
                                 <button onClick={() => handleClick(item.id, item.name, item.price, item.product_type, item.image, item.date_of_addition)}>Edit</button>
                                 <button onClick={() => handleDelete(item.id)}>Delete</button>
                                 <Link to={`/admin/promotion-details/${item.id}`}>Manage promotion</Link>
-                                <Link to="sizes-list">Manage sizes</Link>
+                                <Link to={`sizes-list/${item.id}`}>Manage sizes</Link>
                             </div>
                         )
                     })

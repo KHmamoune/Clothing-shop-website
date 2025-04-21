@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Alatsi";
+  src: local("Alatsi"),
+    url("/fonts/Alatsi-Regular.ttf") format("opentype");
+  font-weight: normal;
+}
+
 .container1 {
   height: 110vh;
 }

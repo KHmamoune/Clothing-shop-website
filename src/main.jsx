@@ -14,6 +14,8 @@ import DashBoard from './componenets/admin/Dashboard.jsx'
 import ProductDetails from './componenets/admin/ProductDetails.jsx'
 import UserDetails from './componenets/admin/UserDetails.jsx'
 import PromotionList from './componenets/admin/PromotionList.jsx'
+import SizeList from './componenets/admin/SizeList.jsx'
+import ProductView from './componenets/shop/ProductView.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,7 @@ const router = createBrowserRouter([
     children: [
       {path: "", element: <Index />},
       {path: "shop", element: <Shop />},
+      {path: "shop/product/:id", element: <ProductView/>},
       {path: "login", element: <LogIn />},
       {path: "signup", element: <SignUp />},
       {path: "admin", element: <DashBoard />},
@@ -30,6 +33,7 @@ const router = createBrowserRouter([
       {path: "admin/product-details", element: <ProductDetails />},
       {path: "admin/user-details", element: <UserDetails />},
       {path: "admin/promotion-details/:id", element: <PromotionList />},
+      {path: "admin/product-details/sizes-list/:id", element: <SizeList/>},
     ],
     errorElement: <Error />
   },

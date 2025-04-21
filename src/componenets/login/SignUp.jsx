@@ -1,8 +1,11 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import '../admin/Form.css'
+import Cookies from 'js-cookie'
+import { MyContext } from '../../MyContext'
 
 const SignUp = () => {
+    const Navigate = useNavigate()
     const [username, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -10,6 +13,13 @@ const SignUp = () => {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [conPassword, setConPassword] = useState("")
+    const { isAuthenticated } = useContext(MyContext)
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            Navigate("/")
+        }
+    })
 
     const handleSignup = async () => {
         let url = `http://127.0.0.1:8000/api/signup`
@@ -42,6 +52,8 @@ const SignUp = () => {
                 setEmail("")
                 setPhone("")
                 setPassword("")
+                Navigate("/login")
+                Cookies.set('authToken', res.token, { expires: 7 })
             }
         }
     }
