@@ -1,16 +1,21 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './ProductView.css'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
+import { useContext } from 'react'
+import { MyContext } from '../../MyContext'
 
 const ProductView = () => {
+    const Navigate = useNavigate()
+    let { isAuthenticated, shopCartItems, setShopCartItems } = useContext(MyContext)
     let { id } = useParams()
     let [product, setProduct] = useState('tous')
     let [sizes, setSizes] = useState([])
     let [colorsBySize, setColosBySize] = useState({})
     let [promotion, setPromotion] = useState(null)
     let [displayedColors, setDisplayedColors] = useState("")
+    let [selectedColor, setSelectedColor] = useState("")
     let [quantity, setQuantity] = useState(0)
     let size = []
 
@@ -33,8 +38,14 @@ const ProductView = () => {
                 setProduct(res[0].product)
 
                 let dict = {}
+                let i = 0
 
                 for (let size in res) {
+                    if (i === 0) {
+                        setDisplayedColors(res[size].size)
+                        i = 1
+                    }
+
                     dict[res[size].size] == undefined ? dict[res[size].size] = [res[size].color] : dict[res[size].size].push(res[size].color)
                 }
 
@@ -55,38 +66,66 @@ const ProductView = () => {
         })()
     }, [id])
 
+    const handleAddToCart = () => {
+        let item = {
+            product: product,
+            quantity: quantity,
+            color: selectedColor,
+            size: displayedColors
+        }
+
+        let temp = [...shopCartItems]
+        temp.push(item)
+        setShopCartItems(temp)
+    }
+
     return (
         <div className='product-container'>
             <p>Personalizer votre achat</p>
             <div>
-                <img src={`/images/${product.image}`} />
                 <div>
-                    <p>{product.name}</p>
-                    <p>{product.product_type}</p>
-                    <p>{product.price}</p>
-                    <p>prix</p>
-                    <p>taille</p>
-                    <div>
+                    <img src={`/images/${product.image}`} />
+                </div>
+                <div className='product-customization-container'>
+                    <div className='product-info-container'>
+                        <p>{product.name}</p>
+                        <p>{product.product_type}</p>
+                        <p>{product.price}DA</p>
+                        <p>prix</p>
+                    </div>
+                    <div className='rule'></div>
+                    <p>Taille</p>
+                    <div className='size-container'>
                         {sizes.map((item) => {
                             let sizeAdded = size.includes(item.size)
                             size.push(item.size)
-                            return sizeAdded ? null : <button key={uuidv4()} className='size-button' onClick={() => setDisplayedColors(item.size)}>{item.size}</button>
+                            return sizeAdded ? null : <button key={uuidv4()} className={displayedColors === item.size ? 'selected-size-button' : 'size-button'} onClick={() => setDisplayedColors(item.size)}>{item.size}</button>
                         })}
                     </div>
-                    <div>
+                    <p>Couleur</p>
+                    <div className='color-container'>
                         {displayedColors != "" ? colorsBySize[displayedColors].map((item) => {
                             return (
-                                <button key={uuidv4()} className='color-button' style={{backgroundColor: item}} onClick={() => console.log(item)}></button>
+                                <button key={uuidv4()} className={selectedColor === item ? 'selected-color-button' : 'color-button'} style={{backgroundColor: item}} onClick={() => setSelectedColor(item)}></button>
                             )
                         }) : null}
                     </div>
-                    <div>
+                    <p>Quantite</p>
+                    <div className='quantity-container'>
                         <button onClick={() => setQuantity(quantity => quantity + 1)}>+</button>
                         <input type="number" value={quantity} onChange={(event) => setQuantity(event.target.value)}/>
                         <button onClick={() => setQuantity(quantity => quantity - 1)}>-</button>
                     </div>
-                    <button>Ajouter au panier</button>
-                    <button>Continue l'achat</button>
+                        {
+                            isAuthenticated ?
+                            <div className='buy-buttons-container'>
+                                <button onClick={handleAddToCart}>Ajouter au panier</button>
+                                <button onClick={() => console.log(shopCartItems)}>Continue l'achat</button>
+                            </div> :
+                            <div className='buy-buttons-container'>
+                                <button onClick={() => Navigate("/login")}>Login pour fair un achat</button>
+                            </div>
+                        }
                 </div>
             </div>
         </div>

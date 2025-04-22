@@ -3,11 +3,13 @@ import NavBar from './NavBar.jsx'
 import { useEffect } from 'react'
 import CardContainer from './CardContainer.jsx'
 import './Shop.css'
+import { useParams } from 'react-router'
 
 const Shop =  () => {
-    let [clothesType, setClothesType] = useState('tous')
+    let { fill } = useParams()
+    let [clothesType, setClothesType] = useState("tous")
     let [clothesInfo, setClothesInfo] = useState([])
-    let [filter, setFilter] = useState("tous")
+    let [filter, setFilter] = useState(fill)
 
     useEffect(() => {
         (async () => {

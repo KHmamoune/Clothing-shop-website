@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 const ShopCard = ({ name, price, image, id}) => {
     const Navigate = useNavigate()
     return (
-        <div className="shop-card" onClick={() => Navigate(`./product/${id}`)}>
+        <div className="shop-card" onClick={() => Navigate(`/shop/product/${id}`)}>
             <img src={`/images/${image}`} />
             <div>
                 <div>

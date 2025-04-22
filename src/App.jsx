@@ -9,6 +9,7 @@ import { MyContext } from "./MyContext.jsx"
 
 function App() {
     let [contextInfo, setContextInfo] = useState({})
+    let [shopCartItems, setShopCartItems] = useState([])
     let [isAuthenticated, setIsAuthenticated] = useState(false)
 
     useEffect(() => {(async () => {
@@ -41,7 +42,7 @@ function App() {
 
     return (
         <>
-            <MyContext.Provider value={{isAuthenticated, contextInfo}}>
+            <MyContext.Provider value={{isAuthenticated, contextInfo, shopCartItems, setShopCartItems}}>
                 <Header />
                 <Outlet />
                 <Footer />

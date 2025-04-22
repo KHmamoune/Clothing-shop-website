@@ -21,8 +21,8 @@ const Header = () => {
             <div className="header-left">
                 <img src={logoIcon} />
                 <Link to="/">Acceuil</Link>
-                <Link to="/shop">Boutique</Link>
-                <Link to="">Nouveautes</Link>
+                <Link to="/shop/tous">Boutique</Link>
+                <Link to="/shop/new">Nouveautes</Link>
                 <Link to="">Contact</Link>
             </div>
             <div className="header-right">
@@ -32,7 +32,7 @@ const Header = () => {
                 </div>
                 <div>
                     <img src={bagIcon} />
-                    <Link to="">Panier</Link>
+                    <Link to="/cart">Panier</Link>
                 </div>
                 <div>
                     <img src={bookIcon} />
