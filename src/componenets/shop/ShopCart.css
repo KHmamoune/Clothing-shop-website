@@ -1,0 +1,148 @@
+.shop-cart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-cart-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1rem;
+  width: 90%;
+  align-self: center;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block: 1px solid black;
+  margin-top: -1px;
+  padding: 1rem;
+  width: 90%;
+  align-self: center;
+}
+
+.cart-item:nth-child(odd) {
+  background-color: #EEFEFE;
+}
+
+.shop-cart-info > * {
+  text-align: center;
+  width: 10%;
+  height: 10%;
+}
+
+.cart-item > * {
+  text-align: center;
+  width: 10%;
+  height: 10%;
+  color: #535353;
+  font-weight: 600;
+}
+
+.cart-item > img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.cart-item-image {
+  background-color: #EEEEEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10vw;
+  height: 10vw;
+}
+
+.cart-item-image > img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.personalize-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.personalize-container > div {
+  width: 2rem;
+  height: 1rem;
+  border: 1px solid black;
+}
+
+.personalize-container > p {
+  margin: 0;
+}
+
+.personalize-container > p:nth-child(2) {
+  width: 2rem;
+  height: 1.5rem;
+  border: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.total-info-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.total-info-container > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 4rem;
+}
+
+.total-info-container > div > p:nth-child(1) {
+  color: #878787;
+  font-weight: 600;
+}
+
+.total-info-container > div:nth-child(1) > p:nth-child(2) {
+  color: #505050;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0;
+}
+
+.total-info-container > div:nth-child(2) > p:nth-child(2) {
+  color: #27AB1C;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0;
+}
+
+.shop-cart-container > button {
+  background-color: #319C17;
+  border: 1px solid #319C17;
+  color: white;
+  width: 25vw;
+  height: 3vw;
+  font-size: 20px;
+  font-weight: 600;
+  align-self: end;
+  margin-top: 3rem;
+  margin-inline: 8rem;
+}
+
+.shop-cart-container > div:nth-child(1) {
+  font-size: 32px;
+  border-bottom: 1px solid black;
+  margin-bottom: 4rem;
+  padding-left: 5rem;
+  font-weight: 600;
+}
+
+.empty-text {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 900;
+  color: #B2B2B2;
+  margin-block: 10rem;
+}

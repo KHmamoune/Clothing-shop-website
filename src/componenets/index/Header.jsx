@@ -27,12 +27,8 @@ const Header = () => {
             </div>
             <div className="header-right">
                 <div>
-                    <img src={searchIcon} />
-                    <Link to="">Rechercher</Link>
-                </div>
-                <div>
                     <img src={bagIcon} />
-                    <Link to="/cart">Panier</Link>
+                    <Link to="/shop-cart">Panier</Link>
                 </div>
                 <div>
                     <img src={bookIcon} />

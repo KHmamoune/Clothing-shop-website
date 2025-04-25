@@ -16,7 +16,7 @@ const ProductView = () => {
     let [promotion, setPromotion] = useState(null)
     let [displayedColors, setDisplayedColors] = useState("")
     let [selectedColor, setSelectedColor] = useState("")
-    let [quantity, setQuantity] = useState(0)
+    let [quantity, setQuantity] = useState(1)
     let size = []
 
     useEffect(() => {
@@ -99,7 +99,7 @@ const ProductView = () => {
                         {sizes.map((item) => {
                             let sizeAdded = size.includes(item.size)
                             size.push(item.size)
-                            return sizeAdded ? null : <button key={uuidv4()} className={displayedColors === item.size ? 'selected-size-button' : 'size-button'} onClick={() => setDisplayedColors(item.size)}>{item.size}</button>
+                            return sizeAdded ? null : <button key={uuidv4()} className={displayedColors === item.size ? 'selected-size-button' : 'size-button'} onClick={() => {setDisplayedColors(item.size); setSelectedColor("")}}>{item.size}</button>
                         })}
                     </div>
                     <p>Couleur</p>
@@ -114,13 +114,13 @@ const ProductView = () => {
                     <div className='quantity-container'>
                         <button onClick={() => setQuantity(quantity => quantity + 1)}>+</button>
                         <input type="number" value={quantity} onChange={(event) => setQuantity(event.target.value)}/>
-                        <button onClick={() => setQuantity(quantity => quantity - 1)}>-</button>
+                        <button onClick={() => setQuantity(quantity => quantity - 1)} disabled={quantity == 1}>-</button>
                     </div>
                         {
                             isAuthenticated ?
                             <div className='buy-buttons-container'>
-                                <button onClick={handleAddToCart}>Ajouter au panier</button>
-                                <button onClick={() => console.log(shopCartItems)}>Continue l'achat</button>
+                                <button onClick={handleAddToCart} disabled={selectedColor === ""} >Ajouter au panier</button>
+                                <button onClick={() => console.log(shopCartItems)} disabled={selectedColor === ""} >Continue l'achat</button>
                             </div> :
                             <div className='buy-buttons-container'>
                                 <button onClick={() => Navigate("/login")}>Login pour fair un achat</button>

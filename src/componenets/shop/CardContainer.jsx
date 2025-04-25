@@ -3,6 +3,12 @@ import ShopCard from './ShopCard'
 import './CardContainer.css'
 
 const CardContainer = ({ clothesInfo, filter }) => {
+    if (clothesInfo.length === 0) {
+        return (
+            <div className='empty-text'>Aucun elements trouver</div>
+        )
+    }
+
     return (
         <div className='shop-card-container'>
             {clothesInfo.map((item) => {

@@ -13,7 +13,6 @@ const ShopCard = ({ name, price, image, id}) => {
                     <p className='grey-text'>prix</p>
                     <p>{price}DA</p>
                 </div>
-                <img src={buyIcon} />
             </div>
         </div>
     )

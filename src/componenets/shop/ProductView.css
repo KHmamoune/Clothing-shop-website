@@ -135,6 +135,12 @@
   color: white;
 }
 
+.buy-buttons-container > button:nth-child(1):disabled {
+  background-color: #B3B3B3;
+  border: 1px solid #B3B3B3;
+  color: white;
+}
+
 .buy-buttons-container > button:nth-child(2) {
   background-color: white;
   border: 1px solid black;
