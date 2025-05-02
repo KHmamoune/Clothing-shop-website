@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../admin/Form.css'
+import './SignUp.css' // Import the new CSS file
 import Cookies from 'js-cookie'
 import { MyContext } from '../../MyContext'
+import { FormProvider, useForm } from 'react-hook-form'
+import FormInput from './FormInput'
 
 const SignUp = () => {
     const Navigate = useNavigate()
+    const methods = useForm()
     const [username, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -14,6 +18,72 @@ const SignUp = () => {
     const [password, setPassword] = useState("")
     const [conPassword, setConPassword] = useState("")
     const { isAuthenticated } = useContext(MyContext)
+
+    const usernameValidation = {
+        required: {
+            value: true,
+            message: 'required',
+        },
+        maxLength: {
+            value: 30,
+            message: '30 characters max',
+        },
+    }
+
+    const emailValidation = {
+        required: {
+            value: true,
+            message: 'required',
+        },
+        pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            message: 'input must be an email'
+        }
+    }
+
+    const phoneValidation = {
+        required: {
+            value: true,
+            message: 'required',
+        },
+        maxLength: {
+            value: 10,
+            message: 'number must have 10 digits',
+        },
+        minLength: {
+            value: 10,
+            message: 'number must have 10 digits',
+        },
+    }
+
+    const passwordValidation = {
+        required: {
+            value: true,
+            message: 'required',
+        },
+        maxLength: {
+            value: 30,
+            message: '30 characters max',
+        },
+        minLength: {
+            value: 3,
+            message: '3 characters minimum',
+        },
+    }
+
+    const conpasswordValidation = {
+        required: {
+            value: true,
+            message: 'required',
+        },
+        maxLength: {
+            value: 30,
+            message: '30 characters max',
+        },
+        validate: () => {
+            return methods.watch('Password') === methods.watch('Confirm password') || "confirm password must match password"
+        },
+    }
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -54,44 +124,90 @@ const SignUp = () => {
                 setPassword("")
                 Navigate("/login")
                 Cookies.set('authToken', res.token, { expires: 7 })
+            } else {
+                alert((await res.json()).username)
             }
         }
     }
 
+    const onSubmit = methods.handleSubmit(data => {
+        console.log(data)
+        setUsername(data['Username'])
+        setFirstName(data['First name'])
+        setLastName(data['Last name'])
+        setEmail(data['Email'])
+        setPhone(data['Phone number'])
+        setPassword(data['Password'])
+        setConPassword(data['Confirm password'])
+        handleSignup()
+    })
+
     return (
-        <div>
-            <p className='admin-form-title'>SingUp</p>
-            <div className='form-container'>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="first">First name</label>
-                    <input id="first" type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="last">Last name</label>
-                    <input id="last" type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="phone">Phone number</label>
-                    <input id="phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="pass">Password</label>
-                    <input id="pass" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="con-pass">Confirm password</label>
-                    <input id="con-pass" type="password" value={conPassword} onChange={(event) => setConPassword(event.target.value)} />
-                </div>
-                <button onClick={handleSignup}>SignUp</button>
-                <Link to="/login">have an account?</Link>
+        <div className="signup-container">
+            <div className="signup-card">
+                <h1 className="signup-title">Create Account</h1>
+                <FormProvider {...methods}>
+                    <form className="signup-form" onSubmit={e => e.preventDefault()}>
+                        <FormInput
+                            id={"username"}
+                            label={"Username"}
+                            type={"text"}
+                            value={username}
+                            setValue={setUsername}
+                            validation={usernameValidation}
+                        />
+                        <FormInput
+                            id={"first"}
+                            label={"First name"}
+                            type={"text"}
+                            value={firstName}
+                            setValue={setFirstName}
+                            validation={usernameValidation}
+                        />
+                        <FormInput
+                            id={"last"}
+                            label={"Last name"}
+                            type={"text"}
+                            value={lastName}
+                            setValue={setLastName}
+                            validation={usernameValidation}
+                        />
+                        <FormInput
+                            id={"email"}
+                            label={"Email"}
+                            type={"email"}
+                            value={email}
+                            setValue={setEmail}
+                            validation={emailValidation}
+                        />
+                        <FormInput
+                            id={"phone"}
+                            label={"Phone number"}
+                            type={"tel"}
+                            value={phone}
+                            setValue={setPhone}
+                            validation={phoneValidation}
+                        />
+                        <FormInput
+                            id={"pass"}
+                            label={"Password"}
+                            type={"password"}
+                            value={password}
+                            setValue={setPassword}
+                            validation={passwordValidation}
+                        />
+                        <FormInput
+                            id={"con-pass"}
+                            label={"Confirm password"}
+                            type={"password"}
+                            value={conPassword}
+                            setValue={setConPassword}
+                            validation={conpasswordValidation}
+                        />
+                        <button className="signup-button" onClick={onSubmit}>Sign Up</button>
+                        <Link to="/login" className="login-link">Already have an account? Log in</Link>
+                    </form>
+                </FormProvider>
             </div>
         </div>
     )

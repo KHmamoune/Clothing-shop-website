@@ -44,6 +44,15 @@ body {
   font-family: sans-serif;
 }
 
+.header-right > div > img {
+  width: 34px;
+  height: 34px;
+}
+
+.login-icon {
+  filter: invert(100%);
+}
+
 .logout-button {
   font-family: sans-serif;
   background-color: transparent;
@@ -51,4 +60,52 @@ body {
   color: white;
   font-size: 16px;
   padding: 0;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  color: white;
+}
+
+.dropdown > img {
+  width: 34px;
+  height: 34px;
+  filter: invert(100%);
+}
+
+.dropdown > * {
+  margin: auto;
+  align-self: center;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 2rem;
+  right: 0rem;
+}
+
+.dropdown-content > button {
+  background-color: #333333;
+  height: 3rem;
+  border: 1px solid white;
+  color: white;
+  margin-top: -1px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.dropdown-content > button:hover {
+  background-color: #444444;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
 }

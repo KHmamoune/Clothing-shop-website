@@ -18,6 +18,8 @@ import SizeList from './componenets/admin/SizeList.jsx'
 import ProductView from './componenets/shop/ProductView.jsx'
 import ShopCart from './componenets/shop/ShopCart.jsx'
 import Checkout from './componenets/shop/Checkout.jsx'
+import UserProfile from './componenets/login/UserProfile.jsx'
+import ContactSection from './componenets/index/ContactSection.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,13 +27,15 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {path: "", element: <Index />},
-      {path: "shop/:fill", element: <Shop />},
+      {path: "shop", element: <Shop />},
       {path: "shop/product/:id", element: <ProductView/>},
       {path: "shop-cart", element: <ShopCart/>},
       {path: "checkout", element: <Checkout/>},
       {path: "login", element: <LogIn />},
       {path: "signup", element: <SignUp />},
       {path: "admin", element: <DashBoard />},
+      {path: "profile", element: <UserProfile />},
+      {path: "contact", element: <ContactSection />},
       {path: "admin/create-product", element: <CreateProduct />},
       {path: "admin/create-user", element: <CreateUser />},
       {path: "admin/product-details", element: <ProductDetails />},

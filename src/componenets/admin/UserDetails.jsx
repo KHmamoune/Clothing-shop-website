@@ -44,7 +44,7 @@ const UserDetails = () => {
                 },
                 mode: "cors",
                 body: JSON.stringify({
-                    user_name: username,
+                    username: username,
                     first_name: firstName,
                     last_name: lastName,
                     email: email,
@@ -153,14 +153,15 @@ const UserDetails = () => {
                 {userInfo.map((item) => {
                     return (
                         <div key={uuidv4()}>
-                            <p>Username: {item.user_name}</p>
+                            <p>Username: {item.username}</p>
                             <p>First Name: {item.first_name}</p>
                             <p>Last Name: {item.last_name}</p>
                             <p>Email: {item.email}</p>
                             <p>Phone Number: {item.phone_number}</p>
                             <p>Type: {item.user_type}</p>
-                            <p>Password: {item.password}</p>
-                            <button onClick={() => handleClick(item.id, item.user_name, item.first_name, item.last_name, item.email, item.phone_number, item.password, item.user_type)}>Edit</button>
+                            <p>Password:</p>
+                            <p>{item.password}</p>
+                            <button onClick={() => handleClick(item.id, item.username, item.first_name, item.last_name, item.email, item.phone_number, item.password, item.user_type)}>Edit</button>
                             <button onClick={() => handleDelete(item.id)}>Delete</button>
                         </div>
                     )

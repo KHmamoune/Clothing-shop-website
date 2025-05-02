@@ -3,8 +3,10 @@ import { useContext } from 'react'
 import { MyContext } from '../../MyContext'
 import removeIcon from './../../assets/Cancel.svg'
 import './ShopCart.css'
+import { useNavigate } from 'react-router'
 
 const ShopCart = () => {
+    const Navigate = useNavigate()
     let { shopCartItems, setShopCartItems } = useContext(MyContext)
     let tPrice = 0
     let tCount = 0
@@ -77,8 +79,7 @@ const ShopCart = () => {
                 </div>
             </div>
 
-            <button>Continue l'achat</button>
-            }
+            <button onClick={() => Navigate("/checkout", { state: shopCartItems})}>Continue l'achat</button>
         </div>
     )
 }

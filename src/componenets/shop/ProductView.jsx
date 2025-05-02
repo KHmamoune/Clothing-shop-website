@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './ProductView.css'
-import { useNavigate, useParams } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
 import { useContext } from 'react'
 import { MyContext } from '../../MyContext'
@@ -61,14 +61,20 @@ const ProductView = () => {
             if (data2.ok) {
                 const res2 = await data2.json()
                 console.log(res2)
-                setPromotion(res2)
+                setPromotion(res2[0].sale)
             }
         })()
     }, [id])
 
     const handleAddToCart = () => {
+        let new_product = {...product}
+
+        if (promotion !== null) {
+            new_product.price = product.price - (product.price * promotion) / 100
+        }
+
         let item = {
-            product: product,
+            product: new_product,
             quantity: quantity,
             color: selectedColor,
             size: displayedColors
@@ -76,6 +82,7 @@ const ProductView = () => {
 
         let temp = [...shopCartItems]
         temp.push(item)
+        alert("product added to cart")
         setShopCartItems(temp)
     }
 
@@ -90,7 +97,7 @@ const ProductView = () => {
                     <div className='product-info-container'>
                         <p>{product.name}</p>
                         <p>{product.product_type}</p>
-                        <p>{product.price}DA</p>
+                        { promotion === null ? <p>{product.price}DA</p> : <p><del>{product.price}DA</del> {product.price - (product.price * promotion) / 100}DA</p>}
                         <p>prix</p>
                     </div>
                     <div className='rule'></div>
@@ -120,7 +127,7 @@ const ProductView = () => {
                             isAuthenticated ?
                             <div className='buy-buttons-container'>
                                 <button onClick={handleAddToCart} disabled={selectedColor === ""} >Ajouter au panier</button>
-                                <button onClick={() => console.log(shopCartItems)} disabled={selectedColor === ""} >Continue l'achat</button>
+                                <button onClick={() => Navigate("/checkout", { state: [{ product: product, quantity: quantity, color: selectedColor, size: displayedColors, sale: promotion }]})} disabled={selectedColor === ""} >Continue l'achat</button>
                             </div> :
                             <div className='buy-buttons-container'>
                                 <button onClick={() => Navigate("/login")}>Login pour fair un achat</button>

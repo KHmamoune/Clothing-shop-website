@@ -8,7 +8,6 @@
   margin: 0 auto;
 }
 
-/* Form section */
 .form-section {
   flex: 1;
 }
@@ -38,6 +37,22 @@
   padding: 0.5rem;
   border: 1px solid #d1d5db;
   border-radius: 0.25rem;
+}
+
+.payment-form {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+.payment-input {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.card-number {
+  width: 30em;
 }
 
 .phone-input-container {
@@ -78,11 +93,13 @@
   border: 1px solid #d1d5db;
   border-radius: 0.25rem;
   appearance: none;
+  background-color: white;
 }
 
 .select-arrow {
   position: absolute;
   right: 0;
+  top: 2px;
   display: flex;
   align-items: center;
   padding-right: 0.5rem;
@@ -94,7 +111,6 @@
   height: 1rem;
 }
 
-/* Delivery options */
 .delivery-options {
   display: flex;
   gap: 1rem;
@@ -109,15 +125,58 @@
   margin-right: 0.5rem;
 }
 
-/* Summary section */
 .summary-section {
   width: 100%;
 }
 
 .product-image-container {
-  display: flex;
-  justify-content: center;
   margin-bottom: 1rem;
+  max-height: 24rem;
+  overflow: scroll;
+}
+
+.product-image-container > div {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.product-image-container > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-container > div > div:nth-child(1) {
+  width: 18vw;
+  height: 18vw;
+  background-color: #EBEBEB;
+  align-self: center;
+}
+
+.product-image-container > div > div > img {
+  width: 70%;
+}
+
+.product-image-container > div > div > p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.product-image-container > div > div > p:nth-child(1) {
+  color: #878787;
+  font-size: 16px;
+}
+
+.quantity-text {
+  color: #505050;
+  font-size: 20px;
+}
+
+.price-text {
+  color: #27AB1C;
+  font-size: 20px;
 }
 
 .product-image {
@@ -156,6 +215,7 @@
   padding: 0.5rem;
   text-align: center;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .calculate-button {
@@ -167,6 +227,7 @@
   border: none;
   margin-bottom: 1rem;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .order-button {
@@ -177,9 +238,17 @@
   border-radius: 0.25rem;
   border: none;
   cursor: pointer;
+  font-weight: 600;
 }
 
-/* Media query for desktop layout */
+.order-text {
+  color: #000000;
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  margin-block: 20rem;
+}
+
 @media (min-width: 768px) {
   .checkout-container {
     flex-direction: row;

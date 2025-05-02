@@ -1,11 +1,37 @@
 .nouveautes-card-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: #EBEBEB;
   border-radius: 50px;
   margin: 1rem;
+  width: 20rem;
+  flex-shrink: 0;
 }
 
 .nouveautes-card-container > div {
   text-align: center;
+}
+
+.nouveautes-card-container > div:nth-child(1) {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nouveautes-card-container > div:nth-child(2) {
+  font-family: Alatsi;
+  background-color: white;
+  border-radius: 0px 0px 50px 50px;
+}
+
+.nouveautes-card-info-container > p {
+  margin: 0.5rem;
+  font-weight: 600;
+}
+
+.nouveautes-card-info-container > p:nth-child(2) {
+  font-size: 12px;
+  color: #616161;
 }

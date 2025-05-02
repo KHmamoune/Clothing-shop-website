@@ -24,7 +24,7 @@ const CreateUser = () => {
                 },
                 mode: "cors",
                 body: JSON.stringify({
-                    user_name: username,
+                    username: username,
                     first_name: firstName,
                     last_name: lastName,
                     email: email,

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../admin/Form.css'
+import './LogIn.css' // Import the new CSS file
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { useContext } from 'react'
@@ -45,24 +46,41 @@ const LogIn = () => {
                 console.log(res)
                 Cookies.set('authToken', res.token, { expires: 7 })
                 window.location.reload()
+            } else {
+                alert((await data.json()).detail)
             }
+
         }
     }
 
     return (
-        <div>
-            <p className='admin-form-title'>LogIn</p>
-            <div className='form-container'>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+        <div className="login-container">
+            <div className="login-card">
+                <h1 className="login-title">Welcome Back</h1>
+                <div className="login-form">
+                    <div className="form-group">
+                        <label htmlFor="username" className="form-label">Username</label>
+                        <input
+                            id="username"
+                            type="text"
+                            className="form-input"
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="pass" className="form-label">Password</label>
+                        <input
+                            id="pass"
+                            type="password"
+                            className="form-input"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                    </div>
+                    <button className="login-button" onClick={handleLogIn}>Log In</button>
+                    <Link to="/signup" className="signup-link">Don't have an account? Sign up</Link>
                 </div>
-                <div>
-                    <label htmlFor="pass">Password</label>
-                    <input id="pass" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                </div>
-                <button onClick={handleLogIn}>LogIn</button>
-                <Link to="/signup">create an account</Link>
             </div>
         </div>
     )
